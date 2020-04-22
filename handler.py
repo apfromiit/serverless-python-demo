@@ -1,24 +1,40 @@
 import json
 
-
-def hello(event, context):
+def hello1(event, context):
+    params = event['queryStringParameters']
+    if params == None:
+        name = "world"
+    else:
+        name = params.get("name")
+        if name == None:
+            name = "world"
     body = {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "input": event
+        "hello": name,
     }
-
     response = {
         "statusCode": 200,
         "body": json.dumps(body)
     }
-
     return response
 
-    # Use this code if you don't use the http event with the LAMBDA-PROXY
-    # integration
-    """
-    return {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "event": event
+def hello2(event, context):
+    params = event['pathParameters']
+    body = {
+        "hello": params["name"],
     }
-    """
+    response = {
+        "statusCode": 200,
+        "body": json.dumps(body)
+    }
+    return response
+
+def hello3(event, context):
+    data = json.loads(event['body'])
+    body = {
+        "hello": data['name']
+    }
+    response = {
+        "statusCode": 200,
+        "body": json.dumps(body)
+    }
+    return response
