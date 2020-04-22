@@ -22,7 +22,9 @@ service: serverless-python-demo
 
 provider:
   name: aws
-  runtime: python2.7
+  runtime: python3.7
+  region: us-west-2
+  memorySize: 128
 
 # you can overwrite defaults here
 #  stage: dev
@@ -58,8 +60,33 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  hello1:
+    handler: handler.hello1
+    events:
+      - http:
+          path: hello
+          method: get
+  hello2:
+    handler: handler.hello2
+    events:
+      - http:
+          path: hello/{name}
+          method: get
+          request:
+            parameters:
+              paths:
+              name: true
+  hello3:
+    handler: handler.hello3
+    events:
+      - http:
+          path: hello
+          method: post
+
+httpApi:
+  cors: true
+
+#
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
