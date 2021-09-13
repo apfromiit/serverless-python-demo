@@ -22,9 +22,13 @@ service: serverless-python-demo
 
 provider:
   name: aws
-  runtime: python3.7
+  runtime: python3.8
   region: us-west-2
   memorySize: 128
+  apiGateway:
+    shouldStartNameWithService: true
+  httpApi:
+    cors: true
 
 # you can overwrite defaults here
 #  stage: dev
@@ -75,16 +79,13 @@ functions:
           request:
             parameters:
               paths:
-              name: true
+                name: true
   hello3:
     handler: handler.hello3
     events:
       - http:
           path: hello
           method: post
-
-httpApi:
-  cors: true
 
 #
 #    The following are a few example events you can configure
