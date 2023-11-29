@@ -25,6 +25,7 @@ provider:
   runtime: python3.11
   region: us-west-2
   memorySize: 128
+  timeout: 30
   apiGateway:
     shouldStartNameWithService: true
   httpApi:
@@ -76,6 +77,7 @@ functions:
       - http:
           path: hello/{name}
           method: get
+
           request:
             parameters:
               paths:
