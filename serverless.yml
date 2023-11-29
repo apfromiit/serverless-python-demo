@@ -22,7 +22,7 @@ service: serverless-python-demo
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.11
   region: us-west-2
   memorySize: 128
   apiGateway:
