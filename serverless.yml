@@ -22,7 +22,7 @@ service: serverless-python-demo
 
 provider:
   name: aws
-  runtime: python3.11
+  runtime: python3.12
   region: us-west-2
   memorySize: 128
   timeout: 30
